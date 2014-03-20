@@ -18,7 +18,8 @@ exit_if_not_user root
 #------------------------------------------------------------------------------
 #	Local Variables.
 #------------------------------------------------------------------------------
-EdbDataRoot="/var/lib/PostgresPlus"	# EnterpriseDB data is rooted here.
+#EdbDataRoot="/var/lib/PostgresPlus"	# EnterpriseDB data is rooted here.
+EdbDataRoot="/var/lib/PostgreSQL"	# EnterpriseDB data is rooted here.
 EdbInstallations="${EDB_VERSIONS}"
 PgDataRoot="/var/lib/pgsql"	# PostgreSQL data is rooted here.
 PgHome="/home/postgres"		# Scripts are at ${PgHome}/Script

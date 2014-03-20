@@ -13,14 +13,14 @@ then
 	#----------------------------------------------------------------------
 	#	Linux.
 	#----------------------------------------------------------------------
-	PG_ROOT="/var/lib/PostgresPlus"
+	PG_ROOT="/var/lib/PostgreSQL"
 	PG_HOME="${PG_ROOT}/${PG_VERSION}"
-	export PG_BIN="/usr/PostgresPlus/${PG_VERSION}/bin"
+	export PG_BIN="/usr/PostgreSQL/${PG_VERSION}/bin"
 else
 	#----------------------------------------------------------------------
 	#	Mac OS.
 	#----------------------------------------------------------------------
-	PG_ROOT="/Library/PostgresPlus"
+	PG_ROOT="/Library/PostgreSQL"
 	PG_HOME="${PG_ROOT}/${PG_VERSION}"
 	export PG_BIN="${PG_HOME}/bin"
 fi

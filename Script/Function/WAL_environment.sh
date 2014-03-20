@@ -15,9 +15,9 @@ WAL_environment()	{
 	#----------------------------------------------------------------------
 	#	PostgresPlus from EnterpriseDB on Linux.
 	#----------------------------------------------------------------------
-	echo ${MyPGDATA} | grep "PostgresPlus" > /dev/null 2>&1	\
+	echo ${MyPGDATA} | grep "PostgreSQL" > /dev/null 2>&1	\
 		&& PgVersion="${PgVersion}AS"			\
-		&& PgType="PostgresPlus"			\
+		&& PgType="PostgreSQL"			\
 		&& WAL_BIN_DIR="/usr/${PgType}/${PgVersion}/bin"
 
 	WAL_ROOT_DIR="/var/lib/${PgType}/${PgVersion}"

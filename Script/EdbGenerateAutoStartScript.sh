@@ -74,9 +74,11 @@ TARGET="${TARGET}"
 PST="${PST}"
 
 TAG="\${TARGET}\${PST}"
-PGDATAROOT="/var/lib/PostgresPlus/\${PGMAJORVERSION}"
+#PGDATAROOT="/var/lib/PostgresPlus/\${PGMAJORVERSION}"
+PGDATAROOT="/var/lib/PostgreSQL/\${PGMAJORVERSION}"
 
-PGROOT="/usr/PostgresPlus/\${PGMAJORVERSION}"
+#PGROOT="/usr/PostgresPlus/\${PGMAJORVERSION}"
+PGROOT="/usr/PostgreSQL/\${PGMAJORVERSION}"
 PGBIN="\${PGROOT}/bin"
 PGLIB="\${PGROOT}/lib"
 
