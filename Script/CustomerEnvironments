@@ -1,0 +1,12 @@
+0	OffTheShelf
+1	Standalone
+2	WALshipping	REPLICATING
+3	WALshippingHot	REPLICATING
+4	WALshippingHotStreaming	REPLICATING
+5	Cascading	REPLICATING
+6	LinkedConfig
+7	ConfigSansData
+8	ReceiveXlog	REPLICATING
+9	NoPostgresRole
+10	NoDefaultDatabases
+11	NotOwnedByPostgres

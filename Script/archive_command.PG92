@@ -1,0 +1,65 @@
+#!/bin/bash
+#------------------------------------------------------------------------------
+#	This script is intended to be called via PostgreSQL's archive_command.
+#------------------------------------------------------------------------------
+FQFN=${1:?"ERROR: Fully qualified name of the WAL file to archive is mandatory."}
+FN=${2:?"ERROR: The name of the WAL file to archive is mandatory."}
+WALarchive=${3:?"ERROR: The name of the directory containing the WAL archive is mandatory."}
+
+set -e
+
+#------------------------------------------------------------------------------
+#	Local functions.
+#------------------------------------------------------------------------------
+write_debug()	{
+	if	[ -n "${DEBUG_MODE}" ]
+	then
+		echo "$(date): ${1}" >> ${LOG_FILE}
+	fi
+}
+
+#------------------------------------------------------------------------------
+#	Local variables.
+#------------------------------------------------------------------------------
+Uname="$(uname)" # OS name
+
+if [ "${Uname}" != "Darwin" ]
+then
+	#----------------------------------------------------------------------
+	#	Linux.
+	#----------------------------------------------------------------------
+	ROOT_DIR="/var/lib/pgsql/9.2"
+else
+	#----------------------------------------------------------------------
+	#	Mac OS.
+	#----------------------------------------------------------------------
+	ROOT_DIR="/Library/PostgreSQL/9.2"
+fi
+
+ARCHIVE_DIR="${ROOT_DIR}/WALarchive/${WALarchive}"
+ROOT_FILE="${ROOT_DIR}/DxDebug/${WALarchive}"
+
+LOG_FILE="${ROOT_FILE}_LOG_SHIPPING_LOG"
+LOG_SHIPPING_DEBUG="${ROOT_FILE}_LOG_SHIPPING_DEBUG"
+LOG_SHIPPING_DISABLED="${ROOT_FILE}_LOG_SHIPPING_DISABLED"
+
+if	[ -f "${LOG_SHIPPING_DEBUG}" ]
+then
+	DEBUG_MODE="True"
+fi
+
+#------------------------------------------------------------------------------
+#	Copy the WAL file.
+#------------------------------------------------------------------------------
+if	[ ! -f "${LOG_SHIPPING_DISABLED}" ]
+then
+	write_debug "Copying '${FN}' to '${ARCHIVE_DIR}/${FN}'."
+	rsync -a ${FQFN} ${ARCHIVE_DIR}/${FN}
+	write_debug "Done"
+else
+	write_debug "WAL shipping is disabled for '${WALarchive}'."
+fi
+
+#------------------------------------------------------------------------------
+#	Exit.
+#------------------------------------------------------------------------------
